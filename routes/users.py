@@ -5,22 +5,16 @@ from services.users import User
 router = APIRouter()
 
 @router.post("/users/")
-async def create_user(email: str, senha: str, name: str):
-    User.create_user(email, senha, name)
+async def create_user(email: str, senha: str, name: str,tipo: str):
+    User.create_user(email, senha, name, tipo)
     return {"message": "User created successfully"}
 
-@router.get("/users/{email}")
-async def get_user(email: str):
-    user = User.get_user(email)
-    if user:
-        return {"email": user[0], "senha": user[1], "name": user[2]}
-    else:
-        return {"message": "User not found"}
+@router.get("/users/login/{email}/{senha}")
+async def list_all_users(email,senha):
+    user = User.login(email,senha)
 
-@router.get("/users/")
-async def list_all_users():
-    users = User.listall_user()
-    return {"users": users}
+    if user:
+        return {"name":user[2],"tipo":user[3]}
 
 @router.put("/users/{email}")
 async def update_user(email: str, senha: str, name: str):

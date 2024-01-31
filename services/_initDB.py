@@ -5,8 +5,10 @@ from users import User
 
 def createDB():
     User.createUser()
+
     Environment.createEnvironment()
     Equipment.createEquipment()
 
 
-createDB()
+if __name__ == "__main__":
+    createDB()

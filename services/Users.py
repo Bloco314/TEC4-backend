@@ -11,37 +11,32 @@ class User:
             """CREATE TABLE IF NOT EXISTS users (
                     email TEXT PRIMARY KEY,
                     senha TEXT,
-                    name TEXT
+                    name TEXT,
+                    tipo TEXT
             )"""
         )
 
     @staticmethod
-    def create_user(email, senha, name):
+    def login(email, senha):
         conn = sqlite3.connect("base.db")
         cursor = conn.cursor()
 
         cursor.execute(
-            """INSERT INTO users (email, senha, name) VALUES (?, ?, ?)""",
-            (email, senha, name),
+            """SELECT * FROM users WHERE email = ? AND senha = ?""", (email, senha)
+        )
+
+        return cursor.fetchone()
+
+    @staticmethod
+    def create_user(email, senha, name, tipo):
+        conn = sqlite3.connect("base.db")
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """INSERT INTO users (email, senha, name, tipo) VALUES (?, ?, ?, ?)""",
+            (email, senha, name, tipo),
         )
         conn.commit()
-
-    @staticmethod
-    def get_user(email):
-        conn = sqlite3.connect("base.db")
-        cursor = conn.cursor()
-
-        cursor.execute("""SELECT * FROM users WHERE email=?""", (email,))
-        return cursor.fetchone()
-    
-    @staticmethod
-    def listall_user():
-        conn = sqlite3.connect("base.db")
-        cursor = conn.cursor()
-
-        cursor.execute("""SELECT * FROM users""")
-        return cursor.fetchall()
-    
 
     @staticmethod
     def update_user(email, senha, name):
