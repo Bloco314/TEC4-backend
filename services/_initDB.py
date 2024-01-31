@@ -1,6 +1,6 @@
-from Environments import Environment
-from Equipments import Equipment
-from Users import User
+from environments import Environment
+from equipments import Equipment
+from users import User
 
 
 def createDB():

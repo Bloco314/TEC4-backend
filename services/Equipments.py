@@ -35,6 +35,14 @@ class Equipment:
 
         cursor.execute("""SELECT * FROM equipments WHERE name=?""", (name,))
         return cursor.fetchone()
+    
+    @staticmethod
+    def listall_equipment():
+        conn = sqlite3.connect("base.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""SELECT * FROM equipments""")
+        return cursor.fetchall()
 
     @staticmethod
     def update_equipment(name, description, tag, env_name):

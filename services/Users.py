@@ -33,6 +33,15 @@ class User:
 
         cursor.execute("""SELECT * FROM users WHERE email=?""", (email,))
         return cursor.fetchone()
+    
+    @staticmethod
+    def listall_user():
+        conn = sqlite3.connect("base.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""SELECT * FROM users""")
+        return cursor.fetchall()
+    
 
     @staticmethod
     def update_user(email, senha, name):

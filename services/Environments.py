@@ -32,6 +32,14 @@ class Environment:
 
         cursor.execute("""SELECT * FROM environments WHERE name=?""", (name,))
         return cursor.fetchone()
+    
+    @staticmethod
+    def listall_environment():
+        conn = sqlite3.connect("base.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""SELECT * FROM environments""")
+        return cursor.fetchall()
 
     @staticmethod
     def update_environment(name, description):
