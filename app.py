@@ -14,6 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 app.include_router(users.router)
 
 
@@ -46,3 +47,9 @@ async def get_documentation():
 @app.get("/openapi.json", include_in_schema=False)
 async def get_open_api_endpoint():
     return app.openapi_schema
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
