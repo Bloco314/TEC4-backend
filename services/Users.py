@@ -3,7 +3,7 @@ import sqlite3
 
 class User:
     @staticmethod
-    def createUser():
+    def initTable():
         conn = sqlite3.connect("base.db")
         cursor = conn.cursor()
 
