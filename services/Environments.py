@@ -30,15 +30,15 @@ class Environment:
         conn = sqlite3.connect("base.db")
         cursor = conn.cursor()
 
-        cursor.execute("""SELECT * FROM environments WHERE name=?""", (name,))
+        cursor.execute("""SELECT * FROM environments WHERE name=? ORDER BY name""", (name,))
         return cursor.fetchone()
     
     @staticmethod
-    def listall_environment():
+    def nameall_environment():
         conn = sqlite3.connect("base.db")
         cursor = conn.cursor()
 
-        cursor.execute("""SELECT * FROM environments""")
+        cursor.execute("""SELECT name FROM environments""")
         return cursor.fetchall()
 
     @staticmethod
