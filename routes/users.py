@@ -10,11 +10,18 @@ async def create_user(email: str, senha: str, name: str,tipo: str):
     return {"message": "User created successfully"}
 
 @router.get("/users/login/{email}/{senha}")
-async def list_all_users(email,senha):
+async def login(email,senha):
     user = User.login(email,senha)
 
     if user:
         return {"name":user[2],"tipo":user[3]}
+    
+@router.get("/users/list_colaborator/")
+async def list_colaborators():
+    users = User.list_colaborators()
+
+    if users:
+        return {"colaborators":users}
 
 @router.put("/users/{email}")
 async def update_user(email: str, senha: str, name: str):

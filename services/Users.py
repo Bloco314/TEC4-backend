@@ -28,6 +28,15 @@ class User:
         return cursor.fetchone()
 
     @staticmethod
+    def list_colaborators():
+        conn = sqlite3.connect("base.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""SELECT name, email, tipo FROM users""")
+
+        return cursor.fetchall()
+
+    @staticmethod
     def create_user(email, senha, name, tipo):
         conn = sqlite3.connect("base.db")
         cursor = conn.cursor()
