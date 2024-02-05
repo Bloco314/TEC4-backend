@@ -30,9 +30,11 @@ class Environment:
         conn = sqlite3.connect("base.db")
         cursor = conn.cursor()
 
-        cursor.execute("""SELECT * FROM environments WHERE name=? ORDER BY name""", (name,))
+        cursor.execute(
+            """SELECT * FROM environments WHERE name=? ORDER BY name""", (name,)
+        )
         return cursor.fetchone()
-    
+
     @staticmethod
     def nameall_environment():
         conn = sqlite3.connect("base.db")
@@ -47,8 +49,7 @@ class Environment:
         cursor = conn.cursor()
 
         cursor.execute(
-            """UPDATE environments SET description=? WHERE name=?""",
-            (description, name),
+            """UPDATE environments SET description=? WHERE name=?""",(description, name)
         )
         conn.commit()
 

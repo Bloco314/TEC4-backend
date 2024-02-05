@@ -17,7 +17,6 @@ class Horarios:
     def createHorarios(list, env):
         conn = sqlite3.connect("base.db")
         cursor = conn.cursor()
-        print(list)
 
         for i in list:
             cursor.execute(
@@ -26,7 +25,8 @@ class Horarios:
             """,
                 (i, env),
             )
-            conn.commit()
+
+        conn.commit()
 
     def getHorarios(env):
         conn = sqlite3.connect("base.db")
@@ -40,3 +40,15 @@ class Horarios:
         )
         return cursor.fetchall()
 
+    def clearEnv(env):
+        conn = sqlite3.connect("base.db")
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """
+            DELETE FROM horarios WHERE env_name = ? 
+        """,
+            (env,),
+        )
+
+        conn.commit()
