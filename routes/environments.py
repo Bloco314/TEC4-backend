@@ -52,3 +52,12 @@ def edita_ambiente(description, name: str, item: Item):
         return {"msg": "Updated sucessfully!"}
     except sqlite3.OperationalError:
         return {"msg": "OP-ERROR"}
+    
+@router.delete("/env/delete/{name}")
+def deleta_ambiente(name):
+    try:
+        Horarios.clearEnv(name)
+        Environment.delete_environment(name)
+        return {"msg": "Updated sucessfully!"}
+    except sqlite3.OperationalError:
+        return {"msg": "OP-ERROR"}
