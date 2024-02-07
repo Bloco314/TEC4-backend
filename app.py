@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
-from routes import users, email, environments, horarios
+from routes import users, email, environments, horarios, equipments
 
 app = FastAPI()
 
@@ -18,6 +18,7 @@ app.include_router(email.router)
 app.include_router(users.router)
 app.include_router(environments.router)
 app.include_router(horarios.router)
+app.include_router(equipments.router)
 
 
 def custom_openapi():
