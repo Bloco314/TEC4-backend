@@ -26,6 +26,7 @@ def lista_equipamentos():
 def get_equipamento(name: str):
     try:
         equip = Equipment.get_equipment(name)
+        return equip
     except:
         return {"erro": "houve um erro"}
 
