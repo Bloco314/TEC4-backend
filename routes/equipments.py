@@ -9,7 +9,7 @@ router = APIRouter()
 @router.post("/equip/create/")
 def cria_equipamento(name: str, description: str, env: str, tag: str):
     try:
-        Equipment.create_equipment(name, description, env, tag)
+        Equipment.create_equipment(name, description, tag, env)
     except sqlite3.IntegrityError:
         return {"msg": "PK-ERROR"}
     except sqlite3.OperationalError:
@@ -45,5 +45,14 @@ def deleta_ambiente(name):
     try:
         Equipment.delete_equipment(name)
         return {"msg": "Updated sucessfully!"}
+    except sqlite3.OperationalError:
+        return {"msg": "OP-ERROR"}
+
+
+@router.get("/equip/list/{env_name}")
+def lista_por_ambiente(env_name):
+    try:
+        equips = Equipment.list_by_env(env_name)
+        return {"names": equips}
     except sqlite3.OperationalError:
         return {"msg": "OP-ERROR"}

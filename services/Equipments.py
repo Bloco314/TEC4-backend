@@ -35,7 +35,7 @@ class Equipment:
 
         cursor.execute("""SELECT * FROM equipments WHERE name=?""", (name,))
         return cursor.fetchone()
-    
+
     @staticmethod
     def listall_equipment():
         conn = sqlite3.connect("base.db")
@@ -62,3 +62,15 @@ class Equipment:
 
         cursor.execute("""DELETE FROM equipments WHERE name=?""", (name,))
         conn.commit()
+
+    @staticmethod
+    def list_by_env(env_name):
+        conn = sqlite3.connect("base.db")
+        cursor = conn.cursor()
+
+        cursor.execute(
+            """SELECT name FROM equipments WHERE env_name = ?""",(
+                env_name,
+            )
+        )
+        return cursor.fetchall()
