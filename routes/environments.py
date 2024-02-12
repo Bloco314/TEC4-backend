@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import List
 
-from services.environments import Environment
+from services.Environments import Environment
 from services.horarios import Horarios
 
 router = APIRouter()

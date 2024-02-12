@@ -1,6 +1,6 @@
 import sqlite3
 from fastapi import APIRouter
-from services.equipments import Equipment
+from services.Equipments import Equipment
 
 
 router = APIRouter()
