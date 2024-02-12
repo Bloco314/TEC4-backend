@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  my_db:
+    build: .
+    image: tec-backend:latest
+    container_name: tec-backend
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/workspace
+
+    
